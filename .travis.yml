@@ -353,7 +353,7 @@ script:
 
       # Run it with showing successful tests
       ./examples/all_features/all_features --reporters=xml --out=all_features_success.xml -s || exit 1
-      curl https://report.ci/upload.py > python || exit 1
+      curl https://report.ci/upload.py | python
 
       exit
     fi
