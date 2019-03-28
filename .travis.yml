@@ -383,5 +383,11 @@ script:
 
 #  - ccache -s
 
-#after_script:
-#  - cat compile_commands.json
+after_script:
+  - ./examples/all_features/all_features --reporters=xml --out=all_features.xml
+  - ./examples/all_features/all_features --reporters=xml --out=all_features_success.xml -s
+  - curl https://report.ci/upload.py > upload.py
+  - python upload.py --name "All Features [$COMPILER]" --include all_features.xml
+  - python upload.py --name "All Features with success [$COMPILER]" --include all_features_success.xml 
+
+
